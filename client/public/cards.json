@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "question": "What is React?",
+    "answer": "A library for building UIs."
+  },
+  {
+    "id": 2,
+    "question": "What is JavaScript?",
+    "answer": "A programming language for the web."
+  }
+]
