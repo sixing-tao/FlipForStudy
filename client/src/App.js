@@ -5,14 +5,19 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 function App() {
-  const [cards, dispatch] = useReducer(cardReducer, []);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [state, dispatch] = useReducer(cardReducer, {
+    cards: [],
+    selectedCard: null,
+  });
 
   useEffect(() => {
     fetch("/cards.json")
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: "RESET_CARDS", payload: data });
+        dispatch({
+          type: "RESET_CARDS",
+          payload: { cards: data },
+        });
       })
       .catch((error) => console.error("Error Loading data", error));
   }, []);
@@ -32,19 +37,23 @@ function App() {
     dispatch({ type: "UPDATE_CARDS", payload: updatedCard });
   };
 
+  const setSelectedCard = (card) => {
+    dispatch({ type: "SET_SELECTED_CARD", payload: card });
+  };
+
   return (
     <div>
       <Header />
       <CardsList
-        cards={cards}
+        cards={state.cards}
         onSelectCard={setSelectedCard}
-        selectedCard={selectedCard}
+        selectedCard={state.selectedCard}
       />
       <Footer
         onAdd={addCard}
         onDelete={deleteCard}
         onUpdate={updateCard}
-        currentCard={selectedCard}
+        currentCard={state.selectedCard}
       />
     </div>
   );

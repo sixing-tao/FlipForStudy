@@ -22,10 +22,14 @@ function Footer({ onAdd, onDelete, onUpdate, currentCard }) {
   return (
     <div>
       <button onClick={handleAddCard}>Add New Card</button>
-      <button onClick={() => handleUpdateCard(currentCard)}>
-        Modify Current Card
-      </button>
-      <button onClick={() => onDelete(currentCard.id)}>Delete Card</button>
+      {currentCard && (
+        <>
+          <button onClick={() => handleUpdateCard(currentCard)}>
+            Modify Current Card
+          </button>
+          <button onClick={() => onDelete(currentCard.id)}>Delete Card</button>
+        </>
+      )}
     </div>
   );
 }

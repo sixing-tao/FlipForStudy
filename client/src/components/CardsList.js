@@ -15,16 +15,18 @@ function CardsList({ cards, onSelectCard, selectedCard }) {
     onSelectCard(cards[newIndex]);
   };
 
+  if (cards.length === 0) {
+    return <div>The card set is empty, please add card</div>;
+  }
+
   return (
     <div>
       <button onClick={handlePrevious}>←</button>
-      {cards.length > 0 && (
-        <Card
-          {...cards[currentIndex]}
-          isSelected={true}
-          onSelect={() => onSelectCard(cards[currentIndex])}
-        />
-      )}
+      <Card
+        {...cards[currentIndex]}
+        isSelected={true}
+        onSelect={() => onSelectCard(cards[currentIndex])}
+      />
       <button onClick={handleNext}>→</button>
     </div>
   );
