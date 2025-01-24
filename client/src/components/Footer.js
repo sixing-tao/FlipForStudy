@@ -1,3 +1,5 @@
+import styles from "./Footer.module.css";
+
 function Footer({ onAdd, onDelete, onUpdate, currentCard }) {
   const handleAddCard = () => {
     const question = prompt("Enter question:");
@@ -20,14 +22,24 @@ function Footer({ onAdd, onDelete, onUpdate, currentCard }) {
   };
 
   return (
-    <div>
-      <button onClick={handleAddCard}>Add New Card</button>
+    <div className={styles.footer}>
+      <button className={styles.addButton} onClick={handleAddCard}>
+        Add New Card
+      </button>
       {currentCard && (
         <>
-          <button onClick={() => handleUpdateCard(currentCard)}>
+          <button
+            className={styles.modifyButton}
+            onClick={() => handleUpdateCard(currentCard)}
+          >
             Modify Current Card
           </button>
-          <button onClick={() => onDelete(currentCard.id)}>Delete Card</button>
+          <button
+            className={styles.deleteButton}
+            onClick={() => onDelete(currentCard.id)}
+          >
+            Delete Card
+          </button>
         </>
       )}
     </div>

@@ -1,4 +1,5 @@
 import Card from "./Card";
+import styles from "./CardsList.module.css";
 
 function CardsList({ cards, onSelectCard, selectedCard }) {
   const currentIndex = selectedCard
@@ -16,18 +17,26 @@ function CardsList({ cards, onSelectCard, selectedCard }) {
   };
 
   if (cards.length === 0) {
-    return <div>The card set is empty, please add card</div>;
+    return (
+      <div className={styles.emptyMessage}>
+        The card set is empty, please add card
+      </div>
+    );
   }
 
   return (
-    <div>
-      <button onClick={handlePrevious}>←</button>
+    <div className={styles.container}>
+      <button className={styles.navButton} onClick={handlePrevious}>
+        ←
+      </button>
       <Card
         {...cards[currentIndex]}
         isSelected={true}
         onSelect={() => onSelectCard(cards[currentIndex])}
       />
-      <button onClick={handleNext}>→</button>
+      <button className={styles.navButton} onClick={handleNext}>
+        →
+      </button>
     </div>
   );
 }

@@ -1,8 +1,9 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import { cardReducer } from "./state/cardReducer";
 import CardsList from "./components/CardsList";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import styles from "./App.module.css";
 
 function App() {
   const [state, dispatch] = useReducer(cardReducer, {
@@ -42,19 +43,21 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      <CardsList
-        cards={state.cards}
-        onSelectCard={setSelectedCard}
-        selectedCard={state.selectedCard}
-      />
-      <Footer
-        onAdd={addCard}
-        onDelete={deleteCard}
-        onUpdate={updateCard}
-        currentCard={state.selectedCard}
-      />
+      <main className={styles.main}>
+        <CardsList
+          cards={state.cards}
+          onSelectCard={setSelectedCard}
+          selectedCard={state.selectedCard}
+        />
+        <Footer
+          onAdd={addCard}
+          onDelete={deleteCard}
+          onUpdate={updateCard}
+          currentCard={state.selectedCard}
+        />
+      </main>
     </div>
   );
 }
